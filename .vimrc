@@ -25,7 +25,7 @@ set wildmode=list:longest,full  " command <Tab> completion, list matches, then l
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 " set encoding=utf-8
 set completeopt=longest,menuone " doesn't select the first completion item
 set rtp+=$GOROOT/misc/vim   " go lang support
-set autowrite autoread  " This is also pretty sweet when working on windows, simultaneously having the same file open in another program (say, Visual Studio or Notepad++; both can be configured to autoreload files on change as well).
+set autowrite autoread 
 set complete+=k
 set display=lastline
 set laststatus=2
@@ -34,6 +34,12 @@ set lazyredraw
 set foldmethod=marker
 set incsearch
 set hlsearch
+"use space to replace tab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
 syntax on 
 
 filetype plugin indent on
@@ -57,11 +63,23 @@ Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'terryma/vim-expand-region'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'msanders/snipmate.vim'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'Raimondi/delimitMate'
+Bundle 'sukima/xmledit'
+Bundle 'wikitopian/hardmode'
+
 
 set background=dark
 colorscheme solarized
 
 command! -nargs=? Filter let @a='' | execute 'g/<args>/y A' | new | setlocal bt=nofile | put! a
+
+"let g:EasyMotion_leader_key = '<Leader>'
 
 let g:neocomplcache_enable_at_startup = 0
 
@@ -81,12 +99,6 @@ let wiki_1 = {}
 let wiki_1.path = '~/SkyDrive/vimwiki/'
 let g:vimwiki_list = [wiki_1]
 
-"use space to replace tab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-
 " When vimrc is edited, reload it
 autocmd bufwritepost .vimrc source ~/vimfiles/.vimrc
 autocmd FileType actionscript set dictionary+=~/vimfiles/dict/actionscript.dict
@@ -97,6 +109,7 @@ autocmd FileType actionscript call SourceWorkspace()
 autocmd FileType actionscript let &errorformat=iconv("%E\ \ \ \ [compc]%f(%l):\ 列:\ %c\ %m", 'utf8', &enc)
 "Write when you leave insert mode
 autocmd InsertLeave * silent! write
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 nnoremap <leader>e :e ~/vimfiles/.vimrc<CR>
 nnoremap <silent> <F9> :TlistToggle<CR>
