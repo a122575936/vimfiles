@@ -117,7 +117,7 @@ nnoremap <silent> <F9> :TlistToggle<CR>
 " Toggle the Taglist window
 nnoremap \l  :TlistToggle<CR>
 nnoremap \w  :cd d:\WorldWar\trunk\Client\FlashClient\ \| set ft=actionscript<CR>
-nnoremap \c  :cd d:\WorldWar\trunk\ClientRun\NativeClient\GameResPak\resource\Package\config\<CR>
+nnoremap \c  :cd d:\WorldWar\trunk\ClientRun\NativeClient\GameResPak\resource\config\<CR>
 nnoremap \v  :cd C:\Users\liweiwei\vimfiles\<CR>
 nnoremap \t  :!ctags -R --languages=actionscript<CR>
 nnoremap \s  :so %<CR>
