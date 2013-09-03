@@ -72,6 +72,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'Raimondi/delimitMate'
 Bundle 'sukima/xmledit'
 Bundle 'wikitopian/hardmode'
+Bundle 'tacahiroy/ctrlp-funky'
 
 
 set background=dark
@@ -80,7 +81,7 @@ colorscheme solarized
 command! -nargs=? Filter let @a='' | execute 'g/<args>/y A' | new | setlocal bt=nofile | put! a
 
 "let g:EasyMotion_leader_key = '<Leader>'
-
+let g:ctrlp_extensions = ['funky']
 let g:neocomplcache_enable_at_startup = 0
 
 let g:ctrlp_by_filename = 1
@@ -110,6 +111,10 @@ autocmd FileType actionscript let &errorformat=iconv("%E\ \ \ \ [compc]%f(%l):\ 
 "Write when you leave insert mode
 autocmd InsertLeave * silent! write
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+"
+nnoremap <Leader>f :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 nnoremap <leader>e :e ~/vimfiles/.vimrc<CR>
 nnoremap <silent> <F9> :TlistToggle<CR>
